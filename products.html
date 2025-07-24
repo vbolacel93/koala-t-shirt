@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Our products - Koala T-shirt</title>
+    <script src="js/scripts.js" defer></script>
+
+    <!-- Motion UI CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/motion-ui@2.0.3/dist/motion-ui.min.css" />
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+    <!-- Header -->
+    <div data-include="header.html"></div>
+
+  <!-- Products Section -->
+  <section class="products-preview fade-in">
+    <h1>Our T-shirts</h1>
+    <p>Explore our exclusive range of comfortable and stylish T-shirts.</p>
+
+    <div class="product-list slide-in-right">
+
+        <!-- Product 1 -->
+      <div class="product" 
+           data-name="Koala Tee Classic" 
+           data-price="30.00" 
+           data-desc="Soft cotton, unisex fit. Available in all sizes."
+           data-image="img/tshirt1.jpg">
+        
+           <img src="img/tshirt1.jpg" alt="Koala Tee Classic" />
+        
+           <h3>Koala Tee Classic</h3>
+           <p>Soft cotton, unisex fit. Available in all sizes.</p>
+           <p>$30.00</p>
+        <button class="view-details button">Buy Now</button>
+      </div>
+
+       <!-- Product 2 -->
+       <div class="product" 
+            data-name="Eco Koala Tee" 
+            data-price="35.00" 
+            data-desc="Made from organic materials. Earth-friendly and cozy."
+            data-image="img/tshirt2.jpg">
+
+        <img src="img/tshirt2.jpg" alt="Eco Koala Tee" />
+
+        <h3>Eco Koala Tee</h3>
+        <p>Made from organic materials. Earth-friendly and cozy.</p>
+        <p>$35.00</p>
+        <button class="view-details button">Buy Now</button>
+      </div>
+
+       <!-- Product 3 -->
+       <div class="product" 
+            data-name="Koala Art Edition" 
+            data-price="40.00" 
+            data-desc="Limited edition prints by local artists."
+            data-image="img/tshirt3.jpg">
+
+        <img src="img/tshirt3.jpg" alt="Koala Art Edition" />
+
+        <h3>Koala Art Edition</h3>
+        <p>Limited edition prints by local artists.</p>
+        <p>$40.00</p>
+        <button class="view-details button">Buy Now</button>
+      </div>
+    </div>
+  </section>
+
+    <!-- Footer -->
+    <div data-include="footer.html"></div>
+
+  <script>
+    document.querySelectorAll('.view-details').forEach(button => {
+        button.addEventListener('click', function(){
+            const productDiv = this.closest('.product');
+            const name  = encodeURIComponent(productDiv.dataset.name);
+            const price = encodeURIComponent(productDiv.dataset.price);
+            const desc  = encodeURIComponent(productDiv.dataset.desc);
+            const image = encodeURIComponent(productDiv.dataset.image);
+
+            const url  = `product-detail.html?name=${name}&price=${price}&desc=${desc}&image=${image}`;
+            console.log(url);
+            window.location.href = url;
+        });
+    });
+  </script>
+
+</body>
+</html>
