@@ -4,7 +4,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Koala T-shirt</title>
+
+    <!-- Redirect to login if the user is not logged -->
+    <script>
+        if (!localStorage.getItem("loggedInUser")) {
+            window.location.href = "login.html";
+        }
+    </script>
+
     <script src="js/scripts.js" defer></script>
+    <script src="js/auth.js" defer></script>
 
     <!-- Motion UI CDN -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/motion-ui@2.0.3/dist/motion-ui.min.css" />
@@ -28,16 +37,16 @@
     <section class="products-preview">
         <h2>Featured Products</h2>
         <div class="product-list">
-        <div class="product motion-ui slide-in-left">
-            <img src="img/tshirt1.jpg" alt="Koala Tee Classic">
-            <h3>Koala Classic Tee</h3>
-            <p>$30.00</p>
-        </div>
-        <div class="product motion-ui slide-in-right">
-            <img src="img/tshirt3.jpg" alt="Koala Art Edition" />
-            <h3>Koala Art Edition</h3>
-            <p>$40.00</p>
-        </div>
+            <div class="product motion-ui slide-in-left">
+                <img src="img/tshirt1.jpg" alt="Koala Tee Classic">
+                <h3>Koala Classic Tee</h3>
+                <p>$30.00</p>
+            </div>
+            <div class="product motion-ui slide-in-right">
+                <img src="img/tshirt3.jpg" alt="Koala Art Edition" />
+                <h3>Koala Art Edition</h3>
+                <p>$40.00</p>
+            </div>
         </div>
         <a href="products.html" class="button secondary">View All</a>
     </section>
@@ -58,7 +67,7 @@
     <!-- Footer -->
     <div data-include="footer.html"></div>
 
-    <!-- Motion UI JS (optional if using programmatic triggers) -->
+    <!-- Motion UI JS -->
     <script src="https://cdn.jsdelivr.net/npm/motion-ui@2.0.3/dist/motion-ui.min.js"></script>
 
 </body>

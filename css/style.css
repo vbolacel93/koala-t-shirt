@@ -326,6 +326,81 @@ nav a {
   text-align: center;
 }
 
+/* Checkout */
+
+.checkout-section {
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    .checkout-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+    .checkout-box {
+      padding: 1rem;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      background-color: #f9f9f9;
+    }
+    .checkout-box h2 {
+      margin-top: 0;
+    }
+    .checkout-box label {
+      display: block;
+      margin-top: 1rem;
+      font-weight: bold;
+    }
+    .checkout-box input,
+    .checkout-box select {
+      width: 100%;
+      padding: 0.5rem;
+      margin-top: 0.5rem;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+    }
+
+.button.danger {
+  background-color: #c62828;
+  color: white;
+  border: none;
+  margin-top: 10px;
+}
+
+.button.danger:hover {
+  background-color: #b71c1c;
+  cursor: pointer;
+}
+
+
+.form-container {
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 20px;
+  border-radius: 10px;
+  background: #f9f9f9;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+form input, form button {
+  width: 100%;
+  margin-top: 10px;
+  padding: 10px;
+  font-size: 16px;
+}
+form button {
+  background: #333;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+form button:hover {
+  background: #555;
+}
+
 /* Contact CTA */
 .contact-cta {
   padding: 3rem 2rem;

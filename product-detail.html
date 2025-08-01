@@ -1,30 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Koala T-shirt</title>
-    <script src="js/scripts.js" defer></script>
-
-    <!-- Motion UI CDN -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/motion-ui@2.0.3/dist/motion-ui.min.css" />
-
-    <!-- Main CSS -->
-    <link rel="stylesheet" href="css/style.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Koala T-shirt</title>
+  <script src="js/scripts.js" defer></script>
+  <script src="js/auth.js" defer></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/motion-ui@2.0.3/dist/motion-ui.min.css" />
+  <link rel="stylesheet" href="css/style.css" />
 </head>
 
 <body>
-    <!-- Header -->
-    <div data-include="header.html"></div>
+  <!-- Header -->
+  <div data-include="header.html"></div>
 
   <main class="product-detail">
     <div class="container">
       <div class="product-details">
         <div class="product-info">
-            <h1 id="product-name" class="fade-in"></h1>
-            <img id="product-image" src="" alt="Image">
-            <p id="product-desc"></p>
-            <p><strong>Price</strong> $<span id="product-price"></span></p>
+          <h1 id="product-name" class="fade-in"></h1>
+          <img id="product-image" src="" alt="Image">
+          <p id="product-desc"></p>
+          <p><strong>Price</strong> $<span id="product-price"></span></p>
 
           <form>
             <div class="options">
@@ -49,51 +46,63 @@
                 <option value="blue">Blue</option>
                 <option value="yellow">Yellow</option>
               </select>
-               <small>Note: Colours are subject to change.</small>
+              <small>Note: Colours are subject to change.</small>
             </div>
-            <button id="buy-button">Buy</button>
+            <button id="add-to-cart">Add to Cart</button>
           </form>
-
         </div>
       </div>
     </div>
   </main>
 
-    <!--Footer-->
-    <div data-include="footer.html"></div>
+  <!--Footer-->
+  <div data-include="footer.html"></div>
 
   <script>
     const params = new URLSearchParams(window.location.search);
-
-    const name  = params.get("name");
+    const name = params.get("name");
     const price = params.get("price");
-    const desc  = params.get("desc");
+    const desc = params.get("desc");
     const image = params.get("image");
 
-    if(name && price && desc && image) {
-        document.getElementById("product-name").textContent = decodeURIComponent(name);
-        document.getElementById("product-price").textContent = decodeURIComponent(price);
-        document.getElementById("product-desc").textContent = decodeURIComponent(desc);
-        document.getElementById("product-image").src = decodeURIComponent(image);
-    }else{
-        document.querySelector('.product-detail').innerHTML = '<h2>Poduct not found!</h2>';
+    if (name && price && desc && image) {
+      document.getElementById("product-name").textContent = decodeURIComponent(name);
+      document.getElementById("product-price").textContent = decodeURIComponent(price);
+      document.getElementById("product-desc").textContent = decodeURIComponent(desc);
+      document.getElementById("product-image").src = decodeURIComponent(image);
+    } else {
+      document.querySelector('.product-detail').innerHTML = '<h2>Product not found!</h2>';
     }
 
-    const buyBtn = document.getElementById("buy-button");
+    const addToCartBtn = document.getElementById("add-to-cart");
 
-    buyBtn.addEventListener("click", function() {
-        event.preventDefault();
+    addToCartBtn.addEventListener("click", function (event) {
+      event.preventDefault();
 
-        const size   = document.getElementById("size").value;
-        const color  = document.getElementById("color").value;
-        
-        const failMessage = "⚠️ Please, choose the size and color of the product!";
-        const successMessage = `✅ Purchase completed successfully!\n\nProduct: ${name}\nSize: ${size}\nColor: ${color} \nPrice: $ ${price}`;
+      const size = document.getElementById("size").value;
+      const color = document.getElementById("color").value;
 
-        const message = (size === "" || color === "") ? failMessage : successMessage;
-        alert(message);
+      if (!size || !color) {
+        alert("⚠️ Please, choose the size and color of the product!");
+        return;
+      }
+
+      const product = {
+        name: decodeURIComponent(name),
+        price: parseFloat(decodeURIComponent(price)),
+        desc: decodeURIComponent(desc),
+        image: decodeURIComponent(image),
+        size,
+        color,
+        quantity: 1
+      };
+
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+      cart.push(product);
+      localStorage.setItem("cart", JSON.stringify(cart));
+
+      alert("✅ Product added to cart!");
     });
   </script>
-
 </body>
 </html>
